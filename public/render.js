@@ -1,8 +1,7 @@
 class ActivitiesRender {
    constructor() {
-       this.$posts = $(".posts");
-       this.$postTemplate = $('#post-template').html();
-       this.$commentTemplate = $('#comment-template').html();
+       this.$activities = $(".activities");                       // Edit with David's html class
+       this.$postTemplate = $('#activities-template').html();     // Edit with David's html id
    }
 
    renderActivities(activities) {
