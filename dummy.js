@@ -4,11 +4,11 @@ var mongoose = require('mongoose');
 
 const SERVER_PORT = 8082;
 
-mongoose.connect('mongodb://localhost/flow', function() {
+mongoose.connect('mongodb://localhost/flowDB', function() {
   console.log("DB connection established!!!");
 })
 
-var Post = require('./models/flowModel');
+var Event = require('./models/flowModel');
 
 var app = express();
 app.use(express.static('public'));
@@ -16,21 +16,33 @@ app.use(express.static('node_modules'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+var time1 = new Date('2018-05-16T15:20:00');
+var time2 = new Date('2018-05-17T13:17:00');
+var time3 = new Date('2018-05-17T10:10:00');
 
-var post1 = new Post({text: "This is my first post!"}),
-post2 = new Post ({text: "What nice weather in Tel Aviv"}),
-post3 = new Post ({text: "How hard is this going to be?"});
+var event1 = new Event({activityName: "Basketball", activityMaker: "Ari Liron", activityTime: time1});
+var event2 = new Event ({activityName: "Minchah", activityMaker: "Amos Sidelnik", activityTime: time2});
+var event3 = new Event ({activityName: "Weekly Koffee Klatch", activityMaker: "Ovadya Pinsker", activityTime: time3});
 
-post1.comments.push({text: "Kol hakavod!", user: "Mr. Magoo"});
-post1.comments.push({text: "Until 120", user: "Joe"});
+// event1.activityAttending.push({attendeeName: "Ari Liron", comment: "Looking forward"},
+//   {attendeeName: "Avidan Schwab", comment: "Look out, Mickey Rottenberg is here"}); 
 
-post2.comments.push({text: "If you like it hot", user: "Mr. Magoo"});
-post2.comments.push({text: "Shvitz away!", user: "Moe"});
-post2.comments.push({text: "Enjoy", user: "Larry"});
+// event2.activityAttending.push({attendeeName: "Ovadya Pinsker"},
+//   {attendeeName: "Isiah Isaacson"},
+//     {attendeeName: "Eran Berlinger"}, 
+//       {attendeeName: "Tzadok Mendelson"}, 
+//         {attendeeName: "Jotham Davidson"}, 
+//           {attendeeName: "Miron Wolf"}, 
+//             {attendeeName: "Eliyohu Levinstein"}, 
+//               {attendeeName: "Elijah Frank"},
+//                 {attendeeName: "Daniel Sarasohn"},
+//                   {attendeeName: "Lev Ran"}); 
 
-post3.comments.push({text: "Piece of cake", user: "Curly"});
+// event3.activityAttending.push({attendeeName: "Dganit Hyamson", comment: "WHat a wonderfil idea"},
+//                   {attendeeName: "Laura Spiegel", comment: "Don't forget the hazelnut coffee"},
+//                     {attendeeName: "Anna Ganani", comment: "Yum"}); 
 
-post1.save();
-post2.save();
-post3.save();
+event1.save();
+event2.save();
+event3.save();
 

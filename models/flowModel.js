@@ -8,7 +8,7 @@ let attendeeSchema = new mongoose.Schema({
 let eventSchema = new mongoose.Schema({
     activityName: String,
     activitylocation: String,
-    activityTime: Number,
+    activityTime: Date,
     activityMaker: String,
     activityAttending: [attendeeSchema]
 });
